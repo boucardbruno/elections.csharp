@@ -115,7 +115,7 @@ namespace Domain
                     nbVotes += districtVotes.Select(i => i).Sum();
                 }
 
-                for (var i = 0; i < _officialCandidates.Count(); i++)
+                for (var i = 0; i < _officialCandidates.Count; i++)
                 {
                     var index = _candidates.IndexOf(_officialCandidates[i]);
                     foreach (var entry in _votesWithDistricts)
@@ -126,12 +126,12 @@ namespace Domain
                 }
 
                 var officialCandidatesResult = new Dictionary<string, int>();
-                for (var i = 0; i < _officialCandidates.Count(); i++) officialCandidatesResult[_candidates[i]] = 0;
+                for (var i = 0; i < _officialCandidates.Count; i++) officialCandidatesResult[_candidates[i]] = 0;
                 foreach (var entry in _votesWithDistricts)
                 {
                     var districtResult = new List<float>();
                     var districtVotes = entry.Value;
-                    for (var i = 0; i < districtVotes.Count(); i++)
+                    for (var i = 0; i < districtVotes.Count; i++)
                     {
                         float candidateResult = 0;
                         if (nbValidVotes != 0)
@@ -151,14 +151,14 @@ namespace Domain
                     }
 
                     var districtWinnerIndex = 0;
-                    for (var i = 1; i < districtResult.Count(); i++)
+                    for (var i = 1; i < districtResult.Count; i++)
                         if (districtResult[districtWinnerIndex] < districtResult[i])
                             districtWinnerIndex = i;
                     officialCandidatesResult[_candidates[districtWinnerIndex]] =
                         officialCandidatesResult[_candidates[districtWinnerIndex]] + 1;
                 }
 
-                for (var i = 0; i < officialCandidatesResult.Count(); i++)
+                for (var i = 0; i < officialCandidatesResult.Count; i++)
                 {
                     var ratioCandidate = (float) officialCandidatesResult[_candidates[i]] /
                         officialCandidatesResult.Count * 100;
